@@ -1,14 +1,10 @@
 {
-  "name": "tricore-tasking-lsp",
+  "name": "tricore-tasking-lsp-client",
   "description": "Tricore Tasking Assembly language client",
-  "author": "Xinquan XU",
+  "author": "Schleifner",
   "license": "MIT",
   "version": "0.0.1",
-  "publisher": "Xinquan XU",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
+  "publisher": "Schleifner",
   "engines": {
     "vscode": "^1.63.0"
   },

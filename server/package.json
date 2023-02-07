@@ -1,15 +1,11 @@
 {
-  "name": "tricore-tasking-lsp",
+  "name": "tricore-tasking-lsp-server",
   "description": "Tricore Tasking Assembly language server",
-  "author": "Xinquan XU",
+  "author": "Schleifner",
   "version": "0.0.1",
   "license": "MIT",
   "engines": {
     "node": "*"
-  },
-  "repository": {
-    "type": "git",
-    "url": ""
   },
   "dependencies": {
     "vscode-languageserver": "^7.0.0",

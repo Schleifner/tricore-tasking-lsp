@@ -1,10 +1,10 @@
 {
 	"name": "tricore-tasking-lsp",
 	"description": "Tricore Tasking Assembly language server",
-	"author": "Xinquan XU",
+	"author": "Schleifner",
 	"license": "MIT",
 	"version": "0.0.1",
-	"publisher": "Xinquan XU",
+	"publisher": "Schleifner",
 	"repository": {
 		"type": "git",
 		"url": ""
@@ -58,7 +58,7 @@
 						"messages",
 						"verbose"
 					],
-					"default": "verbose",
+					"default": "off",
 					"description": "Traces the communication between VS Code and the language server."
 				}
 			}
