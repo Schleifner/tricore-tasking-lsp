@@ -152,6 +152,7 @@ export default class Analyzer {
           this.symbolTable.set(s.text, { name: s.text, allowRedefine: true });
         }
       }
+      return;
     }
     symbols.forEach(s => this.createSymbol(s, false));
   }
