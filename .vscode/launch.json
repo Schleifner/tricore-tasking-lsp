@@ -1,0 +1,44 @@
+// A launch configuration that compiles the extension and then opens it inside a new window
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "node",
+			"name": "tricore-parser",
+			"request": "launch",
+			"runtimeArgs": [
+				"-r",
+				"ts-node/register"
+			],
+			"args": ["${workspaceRoot}/server/src/parser/parser.ts"],
+			"cwd":"${workspaceFolder}"
+		},
+		{
+			"type": "extensionHost",
+			"request": "launch",
+			"name": "Launch Client",
+			"runtimeExecutable": "${execPath}",
+			"args": ["--extensionDevelopmentPath=${workspaceRoot}"],
+			"outFiles": ["${workspaceRoot}/client/out/**/*.js"],
+      "preLaunchTask": "Watch",
+      "postDebugTask": "Terminate watch",
+      "sourceMaps": true
+		},
+		{
+			"type": "node",
+			"request": "attach",
+			"name": "Attach to Server",
+			"port": 6009,
+			"restart": true,
+			"timeout": 30000,
+			"outFiles": ["${workspaceRoot}/server/out/**/*.js"],
+			"sourceMaps": true
+		}
+	],
+	"compounds": [
+		{
+			"name": "Client + Server",
+			"configurations": ["Launch Client", "Attach to Server"]
+		}
+	]
+}

@@ -1,0 +1,381 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Tricore Tasking Assembly",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#registers"
+		},
+		{
+			"include": "#mnemonics"
+		},
+		{
+			"include": "#directives"
+		},
+		{
+			"include": "#controls"
+		},
+		{
+			"include": "#built-in"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#numerics"
+		},
+		{
+			"include": "#symbols"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.double-slash.tricore",
+					"match": "(?://).*$"
+				},
+				{
+					"name": "comment.line.semicolon.tricore",
+					"match": ";.*$"
+				},
+				{
+					"name": "comment.block.tricore",
+					"begin": "/\\*",
+					"end": "\\*/"
+				}
+			]
+		},
+		"registers": {
+			"patterns": [
+				{
+					"name": "storage.register.general-purpose.tricore",
+					"match": "(?i)(?:[ad](?:[0-9]|1[0-5])|e(?:[02468]|1[024])|sp)(?-i)\\b"
+				},
+				{
+					"name": "storage.register.core-special-function.tricore",
+					"match": "(?i)(?:pc|psw|pcxi|isp|syscon|biv|btv|icr|fcx|lcx)(?-i)\\b"
+				}
+			]
+		},
+		"directives": {
+			"patterns": [
+				{
+					"name": "keyword.control.directive.control.tricore",
+					"match": "\\.(?i)(?:comment|end|fail|include|message|warning)(?-i)\\b"
+				},
+				{
+					"name": "keyword.control.directive.definition.symbol.tricore",
+					"match": "\\.(?i)(?:alias|equ|extern|global|local)(?-i)\\b"
+				},
+				{
+
+					"name": "keyword.control.directive.section.tricore",
+					"match": "\\.(?i)(?:org|sdecl|sect|set|size|type|weak)(?-i)\\b"
+				},
+				{
+
+					"name": "keyword.control.directive.definition.data.tricore",
+					"match": "\\.(?i)(?:accum|align|asciiz?|byte|double|float|fract|half|sfract|space|word)(?-i)\\b"
+				},
+				{
+					"name": "keyword.control.directive.macro.preprocessor.tricore",
+					"match": "\\.(?i)(?:define|dup[acf]?|endm|if|elif|else|endif|exitm|p?macro|undef)(?-i)\\b"
+				},
+				{
+					"name": "keyword.control.directive.hll.tricore",
+					"match": "\\.(?i)(?:calls|compiler_(?:invocation|name|version)|misrac)(?-i)\\b"
+				}
+			]
+		},
+		"controls": {
+			"patterns": [
+				{
+					"name": "keyword.control.controls.listing.tricore",
+					"match": "\\$(?i)(?:list|page|prctl|s?title)(?-i)\\b"
+				},
+				{
+					"name": "keyword.control.controls.miscellaneous.tricore",
+					"match": "\\$(?i)(?:case|cpu_tc\\d+|debug|hw_only|ident|mmu|no_fpu|object|tc(?:131|16[x2]?)|warning)(?-i)\\b"
+				}
+			]
+		},
+		"built-in": {
+			"patterns": [
+				{
+					"name": "keyword.control.builtin.mathematical.tricore",
+					"match": "@(?i)(?:a[bc]s|asn|at[2n]|cel|co[hs]|flr|l10|log|max|min|pow|rnd|s[gi]n|snh|sqt|tan|tnh|xpn)(?-i)\\b"
+				},
+				{
+					"name": "keyword.control.builtin.conversion.tricore",
+					"match": "@(?i)(?:cv[fi]|fld|s?fract|lng|lun|rvb|unf)(?-i)\\b"
+				},
+				{
+					"name": "keyword.control.builtin.string.tricore",
+					"match": "@(?i)(?:cat|len|pos|scp|sub)(?-i)\\b"
+				},
+				{
+					"name": "keyword.control.builtin.macro.tricore",
+					"match": "@(?i)(?:arg|cnt|mac|mxp)(?-i)\\b"
+				},
+				{
+					"name": "keyword.control.builtin.address-calculation.tricore",
+					"match": "@(?i)(?:his?|los?|[lm]sb)(?-i)\\b"
+				},
+				{
+					"name": "keyword.control.builtin.assembler-mode.tricore",
+					"match": "@(?i)(?:astc|def|exp|int|lst)(?-i)\\b"
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"begin": "\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.tricore"
+						}
+					},
+					"end": "\"",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.tricore"
+						}
+					},
+					"name": "string.quoted.double.tricore",
+					"patterns": [
+						{
+							"include": "#string_escaped_char"
+						},
+						{
+							"include": "#line_continuation_character"
+						}
+					]
+				},
+				{
+					"begin": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.tricore"
+						}
+					},
+					"end": "'",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.tricore"
+						}
+					},
+					"name": "string.quoted.double.tricore",
+					"patterns": [
+						{
+							"include": "#string_escaped_char"
+						},
+						{
+							"include": "#line_continuation_character"
+						}
+					]
+				}
+			]
+		},
+		"numerics": {
+			"patterns": [
+				{
+					"name": "constant.numeric.dec.tricore",
+					"match": "#?\\b(?:(?:\\d+)(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)\\b"
+				},
+				{
+					"name": "constant.numeric.dec.tricore",
+					"match": "#?(\\.\\d+(?![a-zA-Z._]))"
+				},
+				{
+					"name": "constant.numeric.bin.tricore",
+					"match": "#?\\b0[Bb][01]+\\b"
+				},
+				{
+					"name": "constant.numeric.hex.tricore",
+					"match": "#?\\b(?i)(?:(?:0x)?[0-9a-fA-F]+)(?-i)\\b"
+				}
+			]
+		},
+		"mnemonics": {
+			"patterns": [
+				{
+					"name": "support.function.mnemonic.general-purpose.data-transfer.mov.tricore",
+					"match": "\\b(?i)(?:mov(?:\\.(?:aa?|d|u))?|movh(?:\\.a)?|cmovn?|l[eh]a)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.add.tricore",
+					"match": "\\b(?i)(?:add(?:\\.[abfh]|[cx]|i(?:h(?:\\.a)?)?|s(?:\\.(?:hu?|u))?|sc\\.at?)?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.sub.tricore",
+					"match": "\\b(?i)(?:sub(?:\\.[abfh]|[cx]|s(?:\\.(?:hu?|u))?)?|rsub(?:s(?:\\.u)?)?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.mul.tricore",
+					"match": "\\b(?i)(?:mul(?:\\.[fhqu]|ms?\\.h|r\\.[hq]|s(?:\\.u)?)?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.madd.tricore",
+					"match": "\\b(?i)(?:madd(?:\\.[fhqu]|ms?\\.h|rs?\\.[hq]|s(?:\\.[hqu]|u(?:ms?|rs?|s)?\\.h)?)?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.msub.tricore",
+					"match": "\\b(?i)(?:msub(?:\\.[fhqu]|ad(?:ms?|rs?|s)?\\.h|ms?\\.h|rs?\\.[hq]|s(?:\\.[hqu])?)?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.div.tricore",
+					"match": "\\b(?i)(?:div(\\.[fu])?|dv(?:adj|init(?:\\.(?:bu?|hu?|u))?|step(?:\\.u)?))(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.abs.tricore",
+					"match": "\\b(?i)(?:abs(?:dif)?(?:\\.[bh]|s(?:\\.h)?)?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.max-min-saturate,.tricore",
+					"match": "\\b(?i)(?:m(?:ax|in)(?:\\.(?:bu?|hu?|u))?|ixm(?:ax|in)(?:\\.u)?|sat\\.[bh]u?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.conditional.tricore",
+					"match": "\\b(?i)(?:(?:cadd|csub|sel)n?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.logic.tricore",
+					"match": "\\b(?i)(?:(?:and|or)(?:(?:\\.(?:andn?\\.t|eq|ge(?:\\.u)?|lt(?:\\.u)?|ne|n?or\\.t|t)?)?|n(?:\\.t)?))(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.logic.tricore",
+					"match": "\\b(?i)(?:n(?:and|or)(?:\\.t)?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.logic.tricore",
+					"match": "\\b(?i)(?:x(?:(nor(?:\\.t)?)|or(?:\\.(?:eq|ne|(?:ge|lt)(\\.u)?|t))?)|not)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.count-leading.tricore",
+					"match": "\\b(?i)(?:cl[osz](?:\\.h)?|crc(?:n|32(\\.b|[bl]\\.w))|popcnt.w)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.shift.tricore",
+					"match": "\\b(?i)(?:sh(?:\\.(?:andn?\\.t|eq|ge(?:\\.u)?|h|lt(?:\\.u)?|nand.t|n(?:e|or\\.t)|orn?\\.t|xn?or\\.t)|a(?:(?:\\.h)?|s)|uffle)?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.bit-field.tricore",
+					"match": "\\b(?i)(?:dextr|extr(?:\\.u)?|ins(?:ert|n?\\.t)|imask|b(merge|split))(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.psw.tricore",
+					"match": "\\b(?i)(?:m[ft]cr|traps?v|rstv|updfl|parity)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.eq.tricore",
+					"match": "\\b(?i)(?:eq(?:\\.[abhw]|any\\.[bh]|z\\.a)?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.ne.tricore",
+					"match": "\\b(?i)(?:ne(?:z?\\.a)?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.lt.tricore",
+					"match": "\\b(?i)(?:lt(?:\\.(a|bu?|hu?|wu?|u))?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.arithmetic.ge.tricore",
+					"match": "\\b(?i)(?:ge(?:\\.[ab])?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.branch.jmp.tricore",
+					"match": "\\b(?i)(?:j(?:[ai]|eq(?:\\.a)?|ge(?:\\.u|z)?|gtz|l(?:[ai]|ez|t(?:\\.u|z)?)?|ne(?:\\.a|[di])?|nz(?:\\.[at])?|z(?:\\.[at])?)?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.branch.call-return.tricore",
+					"match": "\\b(?i)(?:f?(?:call[ai]?|ret)|rf[em])(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-purpose.branch.loop.tricore",
+					"match": "\\b(?i)(?:loopu?)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-prupose.load.tricore",
+					"match": "\\b(?i)(?:ld(?:\\.(?:[aqw]|bu?|da?|hu?)|[lu]cx|mst))(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-prupose.store.tricore",
+					"match": "\\b(?i)(?:st(?:\\.(?:[abhqtw]|da?)|[lu]cx)|swap(?:msk)?\\.w|cmpswap.w)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.general-prupose.context-related.tricore",
+					"match": "\\b(?i)(?:(?:sv|rs)lcx|bisr)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.system.tricore",
+					"match": "\\b(?i)(?:syscall|[di]sync|(?:en|dis)able|nop|debug|restore|wait)(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.cache.tricore",
+					"match": "\\b(?i)(?:cache[ai]\\.(?:i|wi?))(?-i)\\b"
+				},
+				{
+					"name": "support.function.mnemonic.arithmetic.float.tricore",
+					"match": "\\b(?i)(?:fto(?:(?:i|q31|u)z?|hp)|(?:[iu]|q31|hp)tof|(?:un)?pack|(?:cmp|qseed)\\.f)(?-i)\\b"
+				}
+			]
+		},
+		"symbols": {
+			"patterns": [
+				{
+					"name": "variable.label.define.tricore",
+					"match": "^[.a-zA-Z_][.0-9a-zA-Z_]*:?"
+				},
+				{
+					"name": "variable.label.define.tricore",
+					"match": "^\\s+[.a-zA-Z_][.0-9a-zA-Z_]*:"
+				},
+				{
+					"name": "variable.label.ref.tricore",
+					"match": "[.a-zA-Z_][.0-9a-zA-Z_]*"
+				},
+				{
+					"name": "variable.label.local.define.tricore",
+					"match": "^(?:1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\b:?"
+				},
+				{
+					"name": "variable.label.local.define.tricore",
+					"match": "^\\s+(?:1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\b:"
+				},
+				{
+					"name": "variable.label.local.ref.tricore",
+					"match": "\\b(?:1?[0-9]{1,2}|2[0-4][0-9]|25[0-5])[pn]\\b"
+				}
+			]
+		},
+		"string_escaped_char": {
+			"patterns": [
+				{
+					"match": "(?x)\\\\ (\n\\\\\t\t\t |\n[abefnprtv'\"?]   |\n[0-3]\\d{,2}\t |\n[4-7]\\d?\t\t|\nx[a-fA-F0-9]{,2} |\nu[a-fA-F0-9]{,4} |\nU[a-fA-F0-9]{,8} )",
+					"name": "constant.character.escape.c"
+				},
+				{
+					"match": "\\\\.",
+					"name": "invalid.illegal.unknown-escape.c"
+				}
+			]
+		},
+		"line_continuation_character": {
+			"patterns": [
+				{
+					"match": "(\\\\)\\n",
+					"captures": {
+						"1": {
+							"name": "constant.character.escape.line-continuation.c"
+						}
+					}
+				}
+			]
+		}
+	},
+	"scopeName": "source.tricore.tasking"
+}

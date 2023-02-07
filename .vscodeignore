@@ -1,0 +1,12 @@
+*
+*/**
+
+!package.json
+!README.md
+!CHANGELOG.md
+!LICENSE
+!icon.png
+!client/language-configuration.json
+!client/syntaxes/**
+!client/out/extension.js
+!server/out/server.js
