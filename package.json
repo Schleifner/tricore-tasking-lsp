@@ -7,7 +7,7 @@
 	"publisher": "Schleifner",
 	"repository": {
 		"type": "git",
-		"url": ""
+		"url": "https://github.com/Schleifner/tricore-tasking-lsp"
 	},
 	"engines": {
 		"vscode": "^1.63.0"
