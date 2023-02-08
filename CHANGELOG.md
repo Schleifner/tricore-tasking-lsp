@@ -1,3 +1,12 @@
+## [0.1.1](https://github.com/Schleifner/tricore-tasking-lsp/compare/v0.1.0...v0.1.1) (2023-02-08)
+
+
+### Bug Fixes
+
+* error in publish.yml ([d583cd2](https://github.com/Schleifner/tricore-tasking-lsp/commit/d583cd26da620bead92e1960052eda834068126a))
+
+
+
 # 0.1.0 (2023-02-08)
 
 
