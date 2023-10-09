@@ -2,7 +2,7 @@
   "name": "tricore-tasking-lsp-server",
   "description": "Tricore Tasking Assembly language server",
   "author": "Schleifner",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "license": "MIT",
   "engines": {
     "node": "*"

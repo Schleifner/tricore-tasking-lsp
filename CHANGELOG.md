@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/Schleifner/tricore-tasking-lsp/compare/v0.1.1...v0.1.2) (2023-10-09)
+
+
+### Bug Fixes
+
+* bump web-tree-sitter to 0.20.8 to fix server crash in VSCode 1.83.0 ([e45a3f6](https://github.com/Schleifner/tricore-tasking-lsp/commit/e45a3f64118b2d5c00ad07e5f1a37744f9cc0cee))
+
+
+
 ## [0.1.1](https://github.com/Schleifner/tricore-tasking-lsp/compare/v0.1.0...v0.1.1) (2023-02-08)
 
 

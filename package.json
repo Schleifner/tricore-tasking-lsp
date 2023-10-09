@@ -3,7 +3,7 @@
 	"description": "Tricore Tasking Assembly language server",
 	"author": "Schleifner",
 	"license": "MIT",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"publisher": "Schleifner",
 	"repository": {
 		"type": "git",

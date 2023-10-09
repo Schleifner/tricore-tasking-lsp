@@ -3,7 +3,7 @@
   "description": "Tricore Tasking Assembly language client",
   "author": "Schleifner",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "publisher": "Schleifner",
   "engines": {
     "vscode": "^1.63.0"
